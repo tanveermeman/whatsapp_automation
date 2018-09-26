@@ -11,7 +11,12 @@ driver = webdriver.Firefox()
 driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 600)
 
-target= ['tanu jio', 'jio home', 'myself', 'papa', 'omkar trinity','bhaijan banglore']
+#target= ['tanu jio', 'jio home', 'myself', 'papa', 'omkar trinity','bhaijan banglore']
+target = []
+csv_file="./MohsinGroups23Sep.csv"
+df = pd.read_csv(csv_file)
+for name in df.First:
+	target.append(str(name))
 
 # string ="Assalam alaikum Time is: "+datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
 string = 'This is an automated test message please ignore it'
