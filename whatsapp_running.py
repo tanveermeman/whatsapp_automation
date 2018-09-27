@@ -1,4 +1,5 @@
 import datetime
+import pandas as pd
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -17,7 +18,12 @@ class whatsapp:
         self.driver.get("https://web.whatsapp.com/")
         self.wait = WebDriverWait(self.driver, 600)
 
-        self.target = ['tanu jio', 'myself', 'mujahid sir data science python', 'papa', 'bhaijan banglore']
+        # self.target = ['tanu jio', 'myself', 'mujahid sir data science python', 'papa', 'bhaijan banglore']
+        self.target = []
+        csv_file = "./MohsinGroups23Sep.csv"
+        df = pd.read_csv(csv_file)
+        for name in df.First:
+            self.target.append(str(name))
 
     def send_message(self, string):
         x_arg = '//*[@id="side"]/div[2]/div/label/input'
@@ -46,3 +52,4 @@ string = 'This is an automated test message please ignore it' + datetime.datetim
 
 message1 = whatsapp()
 message1.send_message(string)
+
