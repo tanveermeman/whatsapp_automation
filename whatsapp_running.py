@@ -13,8 +13,22 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class whatsapp:
     def __init__(self):
-        print('absdjfbs')
-        self.driver = webdriver.Firefox()
+        try:
+            self.driver = webdriver.Chrome()
+        except:
+            print('There was an error in loading the chrome driver.')
+            try:
+                self.driver = webdriver.Firefox()
+
+            except:
+                print('There was an error in loading firefox driver.')
+                try:
+                    self.driver = webdriver.Safari()
+
+                except:
+                    print('There was an error in loading Safari driver.')
+
+        # self.driver = webdriver.Firefox()
         self.driver.get("https://web.whatsapp.com/")
         self.wait = WebDriverWait(self.driver, 600)
 
@@ -48,8 +62,9 @@ class whatsapp:
         self.driver.close()
 
 
-string = 'This is an automated test message please ignore it' + datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-
+# string = 'This is an automated test message please ignore it' + datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+message_obj = open('message.txt', 'r')
+string = message_obj.read()
 message1 = whatsapp()
 message1.send_message(string)
 
