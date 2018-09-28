@@ -11,7 +11,7 @@ import os
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class whatsapp:
+class WhatsAppBot:
     def __init__(self):
         try:
             self.driver = webdriver.Chrome()
@@ -32,9 +32,11 @@ class whatsapp:
         self.driver.get("https://web.whatsapp.com/")
         self.wait = WebDriverWait(self.driver, 600)
 
+   def prepareContacts(self):
         # self.target = ['tanu jio', 'myself', 'mujahid sir data science python', 'papa', 'bhaijan banglore']
+		#In future we will read from google contacts
         self.target = []
-        csv_file = "./MohsinGroups23Sep.csv"
+        csv_file = "./MohsinGroups23Sep.csv"		#instead of csv file
         df = pd.read_csv(csv_file)
         for name in df.First:
             self.target.append(str(name))
@@ -65,6 +67,7 @@ class whatsapp:
 # string = 'This is an automated test message please ignore it' + datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
 message_obj = open('message.txt', 'r')
 string = message_obj.read()
-message1 = whatsapp()
-message1.send_message(string)
+objWhatsAppBot = WhatsAppBot()
+objWhatsAppBot.prepareContacts()
+objWhatsAppBot.send_message(string)
 
