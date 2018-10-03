@@ -12,7 +12,7 @@ import os
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class whatsapp:
+class WhatsAppBot:
     def __init__(self):
         try:
             self.driver = WhatsAPIDriver(username="TANVEER")
@@ -35,6 +35,7 @@ class whatsapp:
         # self.driver.get("https://web.whatsapp.com/")
         # self.wait = WebDriverWait(self.driver, 600)
 
+    def prepareContacts(self):
         # self.target = ['tanu jio', 'myself', 'mujahid sir data science python', 'papa', 'bhaijan banglore']
         # self.target = []
         # csv_file = "./MohsinGroups23Sep.csv"
@@ -42,7 +43,15 @@ class whatsapp:
         # for name in df.First:
         #     self.target.append(str(name))
 
-        self.target = ['918830804832@c.us', '918971759065@c.us', '919673133084@c.us', '919226267595@c.us', '918329058624@c.us', '919021601089@c.us']
+        # In future we will read from google contacts
+        #         self.target = []
+        #         csv_file = "./MohsinGroups23Sep.csv"		#instead of csv file
+        #         df = pd.read_csv(csv_file)
+        #         for name in df.First:
+        #             self.target.append(str(name))
+
+        self.target = ['918830804832@c.us', '918971759065@c.us', '919673133084@c.us', '919226267595@c.us',
+                       '918329058624@c.us', '919021601089@c.us']
 
     def send_message(self, string):
         for member in self.target:
@@ -72,8 +81,6 @@ class whatsapp:
 # string = 'This is an automated test message please ignore it' + datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
 message_obj = open('message.txt', 'r')
 string = message_obj.read()
-message1 = whatsapp()
-message1.send_message("{0}{1}".format(string, datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")))
-
-
-
+objWhatsAppBot = WhatsAppBot()
+objWhatsAppBot.prepareContacts()
+objWhatsAppBot.send_message("{0}{1}".format(string, datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")))
