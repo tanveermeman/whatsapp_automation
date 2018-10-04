@@ -86,10 +86,10 @@ class WhatsAppBot:
     def fetch_group_participants(self):
         print('fetch_group_participants called')
         participants_chat_ids = []
-        participants = self.driver.group_get_participants_ids('919881109889-1534153347@g.us')
+        participants = self.driver.group_get_participants_ids('919881109889-1534153347@g.us') # this return  a list of dictionaries with key values of the participants
         print(participants)
-        for members in participants:
-            participants_chat_ids.append(participants[0]['_serialized'])
+        for members in participants: # thi is to iterate the list of dictionaries
+            participants_chat_ids.append(participants[0]['_serialized']) # fetch only the values(chat ids) related to key "_serialized"
             # print(participants[0]['_serialized'])
             # print(type(participants))
 
